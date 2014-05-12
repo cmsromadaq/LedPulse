@@ -12,7 +12,7 @@ int npulses=0;
 // the setup routine runs once when you press reset:
 void setup() {                
   Serial.begin(9600);
-//  Serial.setTimeout(1000);
+  Serial.setTimeout(10000);
   Serial.println("LED Pulser V0.1"); 
   Serial.println("Type a freq in Hz (integer value 1-500) or 0 to stop pulsing");  
   // initialize the digital pin as an output.
