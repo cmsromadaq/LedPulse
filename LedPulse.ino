@@ -7,7 +7,7 @@ Code to remotely pilot a pulsed led driver at a fixed frequency
 int led = 13;
 int status = 0;
 int freq=0;
-int npulses=0;
+unsigned long npulses=0;
 
 // the setup routine runs once when you press reset:
 void setup() {                
@@ -41,20 +41,26 @@ void serialEvent()
 {
 
   if (Serial.available() > 0) {
-    Serial.println(" waiting for input");
-
+    //Serial.println(" waiting for input");
     // sentence:
     int val = Serial.parseInt(); 
-    if (Serial.read() == '\n') {
-        val=constrain(val,0,500); //constrain value up to 500Hz
-        freq=val;
-        Serial.print("Frequency has been set to ");
-        Serial.print(freq,DEC);
-        Serial.println(" Hz. Resetting pulser");
-        npulses=0;
+    val=constrain(val,0,500); //constrain value up to 500Hz
+    freq=val;
+    if (val>0)
+    {
+      Serial.print("Frequency has been set to ");
+      Serial.print(freq,DEC);
+      Serial.println(" Hz. Resetting pulser");
+      npulses=0;
     }
-  }  
-}
+    else if (val==0)
+    {
+       Serial.println("Stopping pulser");
+       npulses=0;
+    } 
+  }
+} 
+
 
 
 
