@@ -24,9 +24,9 @@ void loop() {
   if (freq>0)
   {
     digitalWrite(led, HIGH);   // turn the LED on (HIGH is the voltage level)
-    delayMicroseconds(100);               // send a pulse of 100usec
+    delayMicroseconds(1000);               // send a pulse of 100usec
     digitalWrite(led, LOW);    // turn the LED off by making the voltage LOW
-    delay(1000/freq);               // repetition rate 25Hz
+    delay(1000/freq - 1);               // repetition rate 25Hz
     npulses++;
     if ((npulses%100)==0)
     {
